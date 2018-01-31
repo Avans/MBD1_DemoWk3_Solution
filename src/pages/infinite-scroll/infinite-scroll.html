@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Infinite Scroll</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list [virtualScroll]="shows">
+    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+      <ion-item *virtualItem="let show">
+        <ion-avatar item-start>
+          <img [src]="show.image ? show.image.medium : ''">
+        </ion-avatar>
+        <h2>{{ show.name }}</h2>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content>Loading more shows...</ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
